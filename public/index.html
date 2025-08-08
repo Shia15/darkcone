@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>DARKCONE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { color-scheme: dark; }
+    body { background:#0A0A0A; color:#e4e4e7; }
+    .cosmic{
+      background-image:
+        radial-gradient(1000px 500px at 50% -200px, rgba(232,180,72,.10), transparent 60%),
+        radial-gradient(800px 400px at 50% 20%, rgba(255,255,255,.05), transparent 60%);
+    }
+    .glow { box-shadow: 0 0 60px rgba(232,180,72,.35); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <section class="relative h-screen flex items-center justify-center overflow-hidden cosmic">
+    <img src="./darkcone-logo.svg" alt="DARKCONE Logo" class="w-40 h-40 mb-6"/>
+    <div class="text-center absolute bottom-24">
+      <h1 class="text-5xl font-bold" style="color:#E8B448">DARKCONE</h1>
+      <p class="mt-4 text-zinc-400">Precision systems. LATAM-first. Cosmic-calm UX.</p>
+      <p class="text-sm text-zinc-500">ES: Sistemas de precisión, enfoque LATAM y UX serena.</p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="#" class="rounded-xl px-5 py-3 font-medium text-black glow" style="background:#E8B448">Join Discord</a>
+        <a href="#work" class="rounded-xl border border-zinc-700 px-5 py-3 font-medium text-zinc-200">View Work</a>
+      </div>
+    </div>
+    <canvas id="stars" class="absolute inset-0"></canvas>
+  </section>
+  <script>
+    const c = document.getElementById('stars');
+    const ctx = c.getContext('2d');
+    let w,h,stars=[];
+    function init(){
+      w = c.width = innerWidth;
+      h = c.height = innerHeight;
+      stars = Array.from({length:60},()=>({x:Math.random()*w,y:Math.random()*h,len:Math.random()*100+20,speed:Math.random()*6+3,alpha:Math.random()*0.6+0.2}));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      stars.forEach(s=>{
+        const g = ctx.createLinearGradient(s.x,s.y,s.x-s.len,s.y+s.len);
+        g.addColorStop(0, `rgba(232,180,72,${s.alpha})`);
+        g.addColorStop(1, 'rgba(232,180,72,0)');
+        ctx.strokeStyle = g; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-s.len,s.y+s.len); ctx.stroke();
+      });
+    }
+    function update(){
+      stars.forEach(s=>{ s.x += -s.speed; s.y += s.speed;
+        if(s.x < -50 || s.y > h+50){ s.x = Math.random()*(w+100); s.y = -20; } });
+    }
+    function anim(){ draw(); update(); requestAnimationFrame(anim); }
+    addEventListener('resize', init); init(); anim();
+  </script>
+</body>
+</html>

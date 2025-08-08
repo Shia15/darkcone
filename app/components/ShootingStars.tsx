@@ -41,10 +41,7 @@ export default function ShootingStars() {
       ctx.globalCompositeOperation = "lighter";
 
       for (const s of stars) {
-        s.x += s.vx;
-        s.y += s.vy;
-        s.life -= 1;
-
+        s.x += s.vx; s.y += s.vy; s.life -= 1;
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);
         ctx.lineTo(s.x + 12, s.y - 6);
@@ -72,11 +69,5 @@ export default function ShootingStars() {
     };
   }, []);
 
-  return (
-    <canvas
-      ref={ref}
-      className="absolute inset-0 md:hidden pointer-events-none"
-      aria-hidden="true"
-    />
-  );
+  return <canvas ref={ref} className="absolute inset-0 md:hidden pointer-events-none" aria-hidden="true" />;
 }

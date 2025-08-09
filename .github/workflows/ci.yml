@@ -1,16 +1,56 @@
-﻿name: CI
+name: CI
+
 on:
-  push: { branches: [ main ] }
-  pull_request: { branches: [ main ] }
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Cancel older runs on the same branch/PR to save time
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Principle of least privilege
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # If your app lives in a subfolder, set it here (e.g., ./frontend)
+    defaults:
+      run:
+        working-directory: .
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: node -v && npm -v
-      - run: npm ci --include=dev
-      - run: npm run build
-        env: { CI: true }
-      - run: npm run lint || echo "Lint warnings"
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # If you add a `.node-version` or `.nvmrc`, this will auto-detect;
+          # otherwise it uses 20.
+          node-version: '20'
+          cache: npm
+
+      - name: Show versions
+        run: |
+          node -v
+          npm -v
+
+      - name: Install dependencies
+        run: npm ci --include=dev
+
+      - name: Build
+        env:
+          CI: true
+        run: npm run build
+
+      # Runs tests only if you have a "test" script
+      - name: Test (if present)
+        run: npm run test --if-p

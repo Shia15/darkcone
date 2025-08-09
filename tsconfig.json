@@ -1,4 +1,4 @@
-{
+﻿{
   "compilerOptions": {
     "target": "es2020",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["node"],               // ✅ Add this line
+    "types": ["node"],               // âœ… Add this line
     "plugins": [
       {
         "name": "next"

@@ -1,15 +1,18 @@
-import './globals.css';
-import type { Metadata } from 'next';
+// app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'DARKCONE',
-  description: 'Precision systems. LATAM-first. Cosmic-calm UX.',
+  title: "Darkcone",
+  description: "Emotionally intelligent interfaces—minimal, luxe, precise.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-neutral-950 text-neutral-200 antialiased selection:bg-amber-400/30">
+        {children}
+      </body>
     </html>
   );
 }

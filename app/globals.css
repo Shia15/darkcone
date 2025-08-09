@@ -1,23 +1,8 @@
+/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
-body { @apply bg-ink text-zinc-200 antialiased; }
-
-/* film grain */
-body::after{
-  content:""; position:fixed; inset:0; pointer-events:none;
-  background-image:url("data:image/svg+xml;utf8,  <svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'>  <filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter>  <rect filter='url(#n)' width='100%' height='100%' opacity='.06'/></svg>");
-  mix-blend-mode:soft-light;
-}
-
-/* CTA shimmer */
-@keyframes sweep { 0%{transform:translateX(-120%)} 100%{transform:translateX(120%)} }
-.btn-gold { position:relative; overflow:hidden; }
-.btn-gold::after{
-  content:""; position:absolute; inset:0; transform:skewX(-20deg) translateX(-120%);
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
-  animation:sweep 2.8s linear infinite;
-}
-a, button:focus-visible { @apply outline-none ring-2 ring-gold-400/70 ring-offset-2 ring-offset-ink; }
+/* smooth motion & type */
+:root { --radius: 16px; }
+html { scroll-behavior: smooth; }

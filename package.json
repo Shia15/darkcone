@@ -9,7 +9,7 @@
     "lint": "echo 'add eslint later'"
   },
   "dependencies": {
-    "@react-three/drei": "^9.56.25",
+    "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^8.13.7",
     "@react-three/postprocessing": "^2.14.7",
     "framer-motion": "^11.18.2",

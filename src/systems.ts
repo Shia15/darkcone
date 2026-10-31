@@ -94,9 +94,10 @@ export const SYSTEMS: SystemEntry[] = [
     name: "Darkcone",
     tagline: "This site: the shell every in-app system renders inside.",
     mode: "external",
-    href: "https://darkcone.vercel.app",
+    href: "https://darkcone-shias-projects-51ab68e6.vercel.app",
     verified: true,
     kind: "next",
     repo: "https://github.com/Shia15/darkcone",
+    note: "Production domain reported by the Vercel CLI. darkcone.vercel.app is not this project.",
   },
 ];

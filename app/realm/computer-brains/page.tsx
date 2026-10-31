@@ -579,7 +579,8 @@ export default function ComputerBrainsPage() {
   }, [page, goTo]);
 
   const pg = PAGES[page];
-  const counter = page === 0 ? "Cover" : pg.kind === "end" ? "End" : `Page ${pg.num} of 10`;
+  const counter =
+    pg.kind === "cover" ? "Cover" : pg.kind === "end" ? "End" : `Page ${pg.num} of 10`;
 
   return (
     <div style={{

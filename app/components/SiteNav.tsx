@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const LINKS = [
   { href: "/realm", label: "Children's Realm" },
   { href: "/neuronote", label: "Neuronote" },
+  { href: "/systems", label: "Systems" },
 ];
 
 export default function SiteNav() {

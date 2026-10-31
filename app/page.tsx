@@ -47,6 +47,14 @@ const PRODUCTS = [
       "Sunrise notebooks for classes, favourites and the five-year plan. Intent tagging runs on device.",
     accent: "from-amber-400/20 to-pink-500/10",
   },
+  {
+    href: "/systems",
+    kicker: "Systems",
+    title: "Every build, one entry point",
+    blurb:
+      "Realm and Neuronote as routes, the other Vercel deployments embedded alongside them.",
+    accent: "from-cyan-400/20 to-neutral-500/10",
+  },
 ];
 
 export default function Page() {
@@ -107,7 +115,7 @@ export default function Page() {
       <section id="products" className="mx-auto max-w-6xl px-6 py-12">
         <h2 className="text-2xl font-semibold text-neutral-100">Running now</h2>
         <p className="mt-2 max-w-2xl text-neutral-400">
-          Two live builds, both shipped from this frontend.
+          Live builds shipped from this frontend, plus the rest of the deployments.
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">

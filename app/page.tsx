@@ -30,6 +30,25 @@ function CTA({
   );
 }
 
+const PRODUCTS = [
+  {
+    href: "/realm",
+    kicker: "Children's Realm",
+    title: "A library that glows",
+    blurb:
+      "Five pattern-stories for ages 5–10, joined by a live constellation. Open a book and turn the pages.",
+    accent: "from-fuchsia-500/20 to-cyan-400/10",
+  },
+  {
+    href: "/neuronote",
+    kicker: "Neuronote",
+    title: "Notes that know what they are",
+    blurb:
+      "Sunrise notebooks for classes, favourites and the five-year plan. Intent tagging runs on device.",
+    accent: "from-amber-400/20 to-pink-500/10",
+  },
+];
+
 export default function Page() {
   return (
     <main className="relative">
@@ -80,6 +99,38 @@ export default function Page() {
               <h3 className="mb-2 text-lg font-medium text-neutral-100">{title}</h3>
               <p className="text-sm leading-relaxed text-neutral-400">{blurb}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* LIVE PRODUCTS */}
+      <section id="products" className="mx-auto max-w-6xl px-6 py-12">
+        <h2 className="text-2xl font-semibold text-neutral-100">Running now</h2>
+        <p className="mt-2 max-w-2xl text-neutral-400">
+          Two live builds, both shipped from this frontend.
+        </p>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {PRODUCTS.map((p) => (
+            <Link
+              key={p.href}
+              href={p.href}
+              className="group relative overflow-hidden rounded-2xl border border-neutral-800/70 bg-neutral-900/40 p-6 transition hover:border-amber-400/40"
+            >
+              <div
+                aria-hidden
+                className={`pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br ${p.accent} opacity-0 transition group-hover:opacity-100`}
+              />
+              <p className="text-xs uppercase tracking-[0.2em] text-amber-300/70">{p.kicker}</p>
+              <h3 className="mt-2 text-xl font-medium text-neutral-100">{p.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-400">{p.blurb}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm text-amber-300 group-hover:text-amber-200">
+                Open
+                <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden>
+                  <path fill="currentColor" d="M13 5l7 7l-7 7v-4H4v-6h9z" />
+                </svg>
+              </span>
+            </Link>
           ))}
         </div>
       </section>
